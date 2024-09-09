@@ -793,6 +793,8 @@ body.nav-active {
 
 .hero-text{margin-block: 10px 40px;}
 
+.hero .btn{margin-inline: auto;}
+
 .hero .btn{
   position: absolute;
   bottom: 15px;
@@ -803,4 +805,25 @@ body.nav-active {
   height: 110px;
   padding: 12px;
   transform: scale(0.6);
+}
+
+.has-before,
+.has-after{
+  position: relative;
+  z-index: 1;
+}
+.has-before::before,
+.has-after::after{
+  content: "";
+  position: absolute;
+}
+
+.hero-btn img{
+  margin-inline: auto;
+  margin-block-end: 6px;
+}
+
+.hero-btn .span{
+  color: var(--black);
+  font-weight: var(--weight-bold);
 }
