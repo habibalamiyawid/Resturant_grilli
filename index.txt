@@ -444,3 +444,65 @@ Restaurant St, Delicious City, London 9578, UK
 
 +88-123-123456
 reservation@restro.com
+
+  @media (min-width: 1440px) {
+    .grid-list {
+      display: flex;
+      overflow: hidden; /* Hide overflow */
+      position: relative;
+      white-space: nowrap; /* Prevent items from wrapping */
+    }
+  
+    .grid-list li {
+      display: inline-block;
+      width: calc(100% / 3); /* Show 3 items on large screens */
+      flex-shrink: 0; /* Prevent shrinking */
+      transition: transform 0.5s ease-in-out;
+      position: relative;
+      margin-right: 20px; /* Adjust margin for spacing */
+    }
+  
+    /* Smooth zoom on hover */
+    .service-card {
+      transition: transform 0.3s ease;
+    }
+  
+    /* .service-card:hover {
+      transform: scale(1.05);
+    } */
+  }
+  // auto slide for card
+document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('.grid-list');
+    const slides = document.querySelectorAll('.grid-list li');
+    const slideWidth = slides[0].offsetWidth + 20; // Include margin-right
+    let currentIndex = 0;
+    const delay = 2000; // Time between slides (3 seconds)
+  
+    function moveSlides() {
+      // Move all slides to the left
+      slider.style.transition = 'transform 0.5s ease';
+      slider.style.transform = `translateX(-${slideWidth}px)`; // Move one slide width to the left
+  
+      // After the transition ends, reset the position of the slides
+      slider.addEventListener('transitionend', function resetPosition() {
+        // Clone the first slide and append it to the end
+        const firstSlide = slider.firstElementChild;
+        const clone = firstSlide.cloneNode(true);
+        slider.appendChild(clone);
+  
+        // Remove the original first slide
+        slider.removeChild(firstSlide);
+  
+        // Reset the transform to 0 without transition for infinite loop effect
+        slider.style.transition = 'none';
+        slider.style.transform = 'translateX(0)';
+  
+        // Remove the event listener to prevent multiple triggers
+        slider.removeEventListener('transitionend', resetPosition);
+      });
+    }
+  
+    // Set the slider to auto-move every 3 seconds
+    setInterval(moveSlides, delay);
+  });
