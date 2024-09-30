@@ -1306,3 +1306,16 @@ textarea.input-field {
   color: var(--quick-silver);
   line-height: var(--lineHeight-6);
 }
+
+/* EVENT */
+
+.event .section-title{margin-block-end: 40px;}
+
+.event-card{
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card .card-content{
+  back
+}
